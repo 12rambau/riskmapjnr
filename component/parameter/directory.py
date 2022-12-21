@@ -5,3 +5,6 @@ from pathlib import Path
 # create a folder adapted to your need inside this folder to save anything in sepal
 module_dir = Path.home() / "module_results"
 module_dir.mkdir(exist_ok=True)
+
+result_dir = module_dir / "riskmapjnr"
+result_dir.mkdir(exist_ok=True)
