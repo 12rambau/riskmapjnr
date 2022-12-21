@@ -1,0 +1,10 @@
+{
+    "app": {
+        "title": "riskmapjnr",
+        "footer": "The sky is the limit \u00a9 {}",
+        "banner": "This is a automatically generated application. Remove this banner once your application is ready.",
+        "drawer_item": {
+            "about": "About"
+        }
+    }
+}
