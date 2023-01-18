@@ -6,6 +6,7 @@ from sepal_ui import mapping as sm
 from sepal_ui import sepalwidgets as sw
 
 from .about_control import AboutControl
+from .aoi_control import AoiControl
 
 
 class MapTile(sw.Tile):
@@ -25,9 +26,11 @@ class MapTile(sw.Tile):
 
         # add the workflow controls
         about_control = AboutControl()
+        aoi_control = AoiControl(self.m)
 
         # add them on the map
         self.m.add_control(about_control)
+        self.m.add_control(aoi_control)
 
         # create the tile
         super().__init__("map_tile", "", [self.m])
