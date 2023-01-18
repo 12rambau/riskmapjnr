@@ -2,10 +2,10 @@
 The map displayed in the map application.
 """
 
-# from ipyleaflet import WidgetControl
-
 from sepal_ui import mapping as sm
 from sepal_ui import sepalwidgets as sw
+
+from .about_control import AboutControl
 
 
 class MapTile(sw.Tile):
@@ -22,6 +22,12 @@ class MapTile(sw.Tile):
                 self.m, fullscreen=True, fullapp=True, position="topright"
             )
         )
+
+        # add the workflow controls
+        about_control = AboutControl()
+
+        # add them on the map
+        self.m.add_control(about_control)
 
         # create the tile
         super().__init__("map_tile", "", [self.m])
