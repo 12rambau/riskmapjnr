@@ -7,6 +7,7 @@ from sepal_ui import sepalwidgets as sw
 
 from .about_control import AboutControl
 from .aoi_control import AoiControl
+from .fcc_control import FccControl
 
 
 class MapTile(sw.Tile):
@@ -18,18 +19,19 @@ class MapTile(sw.Tile):
         """
         # create a map
         self.m = sm.SepalMap(zoom=3)  # to be visible on 4k screens
-        self.m.add_control(
-            sm.FullScreenControl(
-                self.m, fullscreen=True, fullapp=True, position="topright"
-            )
-        )
+        vic = sm.ValueInspector(m=self.m)
+        fsc = sm.FullScreenControl(self.m, True, True, position="topright")
+        self.m.add_control(fsc)
+        self.m.add_control(vic)
 
         # add the workflow controls
         about_control = AboutControl()
         aoi_control = AoiControl(self.m)
+        fcc_control = FccControl(aoi_control.view.model, self.m)
 
         # add them on the map
         self.m.add_control(about_control)
+        self.m.add_control(fcc_control)
         self.m.add_control(aoi_control)
 
         # create the tile

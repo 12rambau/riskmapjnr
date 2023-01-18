@@ -1,0 +1,26 @@
+{
+    "fcc": {
+        "title": "Forest Cover Change",
+        "source": {
+            "label": "Forest cover dataset",
+            "inputs": {
+                "gfc": "Global Forest Change",
+                "tmf": "Tropical Moist Forest"
+            }
+        },
+        "valid": {
+            "label": "validation period",
+            "start": "start",
+            "end": "end"
+        },
+        "calib": {
+            "label": "validation period",
+            "start": "start",
+            "end": "end"
+        },
+        "btn": "compute FCC",
+        "wrong_order": "The date are not in the right order between calib and valid period",
+        "layer": "Forest Cover Change",
+        "layer_loaded": "Forest cover change loaded on the map and in the folders"
+    }
+}
