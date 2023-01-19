@@ -5,6 +5,7 @@ from urllib.request import urlretrieve
 import ee
 from osgeo import gdal
 from sepal_ui.scripts import decorator as sd
+from tqdm import tqdm
 
 
 @sd.need_ee
@@ -31,12 +32,15 @@ def fcc_from_gfc(calib_start, calib_end, valid_start, valid_end):
 
 
 @sd.need_ee
-def download_fcc(grid, image, dst_dir, alert):
+def download_fcc(grid, image, dst_dir, alert=None):
 
-    # start the alert progress bar
+    # start the progress bar
     total = len(grid)
-    tqdm_args = {"total": total, "unit": "image", "unit_scale": True}
-    alert.update_progress(0, "download images", **tqdm_args)
+    if alert is None:
+        pbar = tqdm(total=len(grid), unit="image", unit_scale=True)
+    else:
+        tqdm_args = {"total": total, "unit": "image", "unit_scale": True}
+        alert.update_progress(0, "download images", **tqdm_args)
 
     # loop in the grid to download each tile
     for i, r in grid.iterrows():
@@ -60,7 +64,10 @@ def download_fcc(grid, image, dst_dir, alert):
                     data = zip_.read(zip_.namelist()[0])
                     dst.write_bytes(data)
 
-        alert.update_progress(i + 1, total=total)
+        if alert is None:
+            pbar.update()
+        else:
+            alert.update_progress(i + 1, total=total)
 
     # create a fcc vrt file
     fcc_file = dst_dir / "fcc.vrt"
