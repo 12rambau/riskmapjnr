@@ -98,7 +98,7 @@ class FccView(sw.Tile):
 
         # download the images
         fc = fcc_data.select("fcc").clip(self.aoi_model.feature_collection)
-        self.fcc_model.fcc_dir = cs.download_fcc(
+        cs.download_fcc(
             grid=grid,
             image=fc.unmask(),
             dst_dir=self.fcc_model.fcc_dir(),
@@ -115,8 +115,10 @@ class FccView(sw.Tile):
 class FccControl(sm.MenuControl):
     def __init__(self, aoi_model, m):
 
+        self.view = FccView(aoi_model, m)
+
         super().__init__(
             icon_content="fa-solid fa-tree",
-            card_content=FccView(aoi_model, m),
+            card_content=self.view,
             card_title=cm.fcc.title,
         )

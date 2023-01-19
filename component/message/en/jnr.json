@@ -1,0 +1,14 @@
+{
+    "jnr": {
+        "title": "Computation",
+        "btn": "Compute the risk map",
+        "results": {
+            "not_computed": "The result have not yet been computed",
+            "dist": "Distance theshold (m)",
+            "window": "Best moving window size (px)",
+            "slice": "Best slicing algorithm",
+            "file": "map file location"
+        },
+        "computation_end": "Computation complete"
+    }
+}

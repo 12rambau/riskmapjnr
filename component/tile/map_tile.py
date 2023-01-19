@@ -8,6 +8,7 @@ from sepal_ui import sepalwidgets as sw
 from .about_control import AboutControl
 from .aoi_control import AoiControl
 from .fcc_control import FccControl
+from .jnr_control import JnrControl
 
 
 class MapTile(sw.Tile):
@@ -28,9 +29,11 @@ class MapTile(sw.Tile):
         about_control = AboutControl()
         aoi_control = AoiControl(self.m)
         fcc_control = FccControl(aoi_control.view.model, self.m)
+        jnr_control = JnrControl(fcc_control.view.fcc_model)
 
         # add them on the map
         self.m.add_control(about_control)
+        self.m.add_control(jnr_control)
         self.m.add_control(fcc_control)
         self.m.add_control(aoi_control)
 

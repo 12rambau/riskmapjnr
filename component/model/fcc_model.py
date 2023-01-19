@@ -41,3 +41,11 @@ class FccModel(model.Model):
         fcc_dir.mkdir(exist_ok=True)
 
         return fcc_dir
+
+    def calib_len(self):
+
+        return self.calib_end - self.calib_start
+
+    def valid_len(self):
+
+        return self.valid_end - self.valid_start
