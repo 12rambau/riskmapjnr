@@ -25,7 +25,3 @@ To compute the rismapjnr map, run the `rismapjnr.ipynb` notebook and execupte al
 # run the UI interface 
 
 A rudimentary interface is available if you run `ui.ipynb` in voila. Note that this version is slower due to open issues in the rismapjnr repository (https://github.com/ghislainv/riskmapjnr/issues).
-
-A rudi
-
-
