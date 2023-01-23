@@ -3,6 +3,7 @@ import zipfile
 from urllib.request import urlretrieve
 
 import ee
+import rasterio as rio
 from osgeo import gdal
 from sepal_ui.scripts import decorator as sd
 from tqdm import tqdm
@@ -45,7 +46,7 @@ def download_fcc(grid, image, dst_dir, alert=None):
     # loop in the grid to download each tile
     for i, r in grid.iterrows():
         ee_geometry = ee.Geometry(r.geometry.__geo_interface__)
-        link = image.getDownloadURL(
+        link = image.int8().getDownloadURL(
             {
                 "name": f"fcc_{i}",
                 "region": ee_geometry,
@@ -63,6 +64,10 @@ def download_fcc(grid, image, dst_dir, alert=None):
                 with zipfile.ZipFile(f.name, "r") as zip_:
                     data = zip_.read(zip_.namelist()[0])
                     dst.write_bytes(data)
+
+                # set nodata to 0
+                with rio.open(dst, "r+") as f:
+                    f.nodata = 0
 
         if alert is None:
             pbar.update()

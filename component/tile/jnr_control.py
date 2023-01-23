@@ -73,7 +73,7 @@ class JnrView(sw.Tile):
             dist_bins=np.arange(0, 1080, step=30),
             win_sizes=np.arange(5, 100, 8),
             ncat=30,
-            parallel=False,
+            parallel=True,
             ncpu=ncpu,
             methods=["Equal Interval", "Equal Area"],
             csize=40,
